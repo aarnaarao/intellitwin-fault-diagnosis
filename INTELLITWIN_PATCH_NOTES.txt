@@ -1,0 +1,19 @@
+INTELLITWIN FINAL DASHBOARD PATCH
+
+Apply:
+1. Extract this ZIP directly into C:\intellitwin-fault-diagnosis.
+2. Choose Replace files when Windows asks.
+3. Keep your existing backend, dataset, trained model, and running server setup.
+
+Changes:
+- Adds a dynamic Priority Fault Alerts section to the Overview page, driven by the actual /api/machines response.
+- Adds npm build and preview scripts to frontend/package.json.
+
+Validation performed on the supplied project:
+- Python test suite: 13 passed.
+- Backend module loaded the supplied saved model and dataset.
+- /api/overview returned 50 machines and class counts: Normal 48, Overload 1, Pressure_drop 0, Shutdown 1.
+- /api/machines returned 50 predictions; non-normal predictions: PUMP-006 Shutdown (100.0%), PUMP-033 Overload (92.6%).
+- Comparing the latest row for each pump with its actual event-derived label produced 50/50 matches in this specific fleet snapshot. This is not held-out test accuracy.
+- Frontend App.jsx passed JSX parser validation.
+- A production Vite build could not be run in this Linux review environment because the supplied node_modules contains Windows-specific optional Rollup dependencies. Run npm install and npm run build on the Windows project machine if production build verification is required.
